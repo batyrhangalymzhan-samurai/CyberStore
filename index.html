@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NeonStore | Геймерский магазин</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -49,10 +49,12 @@
     <div id="checkout-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <i data-lucide="check-circle" class="check-icon"></i>
+            <i data-lucide="check-circle" class="check-icon" style="color: var(--neon-green); width: 50px; height: 50px; margin-bottom: 15px;"></i>
             <h2>Заказ оформлен!</h2>
             <p>Сейчас вы будете перенаправлены в WhatsApp для завершения покупки.</p>
-            <p class="modal-text-muted">Проект создан <a href="https://galymzhan-samurai.netlify.app" target="_blank" style="color: var(--neon-purple);">Галымжаном-Самураем</a></p>
+            <p class="modal-text-muted" style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+                Проект создан <a href="#" style="color: var(--neon-purple); text-decoration: none;">Галымжаном-Самураем</a>
+            </p>
         </div>
     </div>
 
