@@ -1,4 +1,3 @@
-// 1. БАЗА ТОВАРОВ
 const products = [
     { id: 1, title: "Counter-Strike 2 Prime", price: 7500, img: "img/cs2.webp" },
     { id: 2, title: "GTA V Premium", price: 12000, img: "img/gtav.jpg" },
@@ -20,15 +19,12 @@ const products = [
     { id: 18, title: "Marvel's Spider-Man 2", price: 33000, img: "img/spiderman2.jpg" }
 ];
 
-// 2. ИНИЦИАЛИЗАЦИЯ КОРЗИНЫ
 let cart = JSON.parse(localStorage.getItem('neonCart')) || [];
 
-// 3. ОТРИСОВКА ВИТРИНЫ
 function renderProducts() {
     const grid = document.getElementById('products-grid');
     if (!grid) return;
     grid.innerHTML = '';
-
     products.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -42,28 +38,20 @@ function renderProducts() {
     });
 }
 
-// 4. ДОБАВЛЕНИЕ С УВЕДОМЛЕНИЕМ
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
-
-    if (existingItem) {
-        existingItem.qty++;
-    } else {
-        cart.push({ ...product, qty: 1 });
-    }
-
+    if (existingItem) { existingItem.qty++; } 
+    else { cart.push({ ...product, qty: 1 }); }
     showToast(`✅ ${product.title} добавлена!`);
     updateCartUI(); 
 }
 
-// 5. УДАЛЕНИЕ
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCartUI();
 }
 
-// 6. ОБНОВЛЕНИЕ UI И СОХРАНЕНИЕ
 function updateCartUI() {
     const cartItemsContainer = document.getElementById('cart-items');
     const totalQtyElement = document.getElementById('total-qty');
@@ -71,7 +59,6 @@ function updateCartUI() {
     const headerQtyElement = document.getElementById('header-qty');
 
     if (!cartItemsContainer) return;
-
     cartItemsContainer.innerHTML = '';
     let totalQty = 0;
     let totalPrice = 0;
@@ -82,7 +69,6 @@ function updateCartUI() {
         cart.forEach(item => {
             totalQty += item.qty;
             totalPrice += item.price * item.qty;
-
             const cartRow = document.createElement('div');
             cartRow.className = 'cart-item';
             cartRow.innerHTML = `
@@ -98,39 +84,29 @@ function updateCartUI() {
         });
         if (window.lucide) lucide.createIcons();
     }
-
     totalQtyElement.innerText = totalQty;
     headerQtyElement.innerText = totalQty;
     totalPriceElement.innerText = `${totalPrice.toLocaleString()} ₸`;
-
     localStorage.setItem('neonCart', JSON.stringify(cart));
 }
 
-// 7. ЛОГИКА УВЕДОМЛЕНИЙ (Toast)
 function showToast(message) {
     const container = document.getElementById('toast-container');
-    if (!container) return;
-
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `<i data-lucide="info"></i> <span>${message}</span>`;
-    
     container.appendChild(toast);
     if (window.lucide) lucide.createIcons();
-
     setTimeout(() => {
         toast.classList.add('hide');
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
 
-// 8. ЛОГИКА МОДАЛЬНОГО ОКНА И WHATSAPP
 const modal = document.getElementById('checkout-modal');
 const checkoutBtn = document.querySelector('.checkout-btn');
 const closeBtn = document.querySelector('.close-modal');
-
-// ВПИШИ СВОЙ НОМЕР НИЖЕ (без +)
-const myPhoneNumber = "77074125368"; 
+const myPhoneNumber = "77055755098"; 
 
 if (checkoutBtn) {
     checkoutBtn.onclick = function() {
@@ -138,38 +114,21 @@ if (checkoutBtn) {
             showToast("⚠️ Корзина пуста!");
             return;
         }
-
-        // Формируем текст сообщения для WhatsApp
         let message = "Салам! Я хочу оформить заказ в NeonStore:\n\n";
-        
         cart.forEach((item, index) => {
             message += `${index + 1}. ${item.title} (x${item.qty}) — ${(item.price * item.qty).toLocaleString()} ₸\n`;
         });
-
         const finalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
         message += `\nИТОГО К ОПЛАТЕ: ${finalPrice.toLocaleString()} ₸`;
 
-        // Кодируем ссылку
         const whatsappUrl = `https://wa.me/${+77055755098}?text=${encodeURIComponent(message)}`;
-
-        // Показываем модальное окно на сайте
         modal.style.display = "flex";
-
-        // Через 2 секунды перекидываем в WhatsApp
-        setTimeout(() => {
-            window.open(whatsappUrl, '_blank');
-        }, 2000);
+        setTimeout(() => { window.open(whatsappUrl, '_blank'); }, 2000);
     }
 }
 
-if (closeBtn) {
-    closeBtn.onclick = function() { modal.style.display = "none"; }
-}
+if (closeBtn) closeBtn.onclick = () => { modal.style.display = "none"; };
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
-window.onclick = function(event) {
-    if (event.target == modal) { modal.style.display = "none"; }
-}
-
-// СТАРТ
 renderProducts();
 updateCartUI();
