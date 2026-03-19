@@ -98,7 +98,8 @@ function showToast(message) {
     container.appendChild(toast);
     if (window.lucide) lucide.createIcons();
     setTimeout(() => {
-        toast.classList.add('hide');
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(20px)';
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
@@ -106,7 +107,7 @@ function showToast(message) {
 const modal = document.getElementById('checkout-modal');
 const checkoutBtn = document.querySelector('.checkout-btn');
 const closeBtn = document.querySelector('.close-modal');
-const myPhoneNumber = "77055755098"; 
+const myPhoneNumber = "77055755098"; // Номер без лишних знаков
 
 if (checkoutBtn) {
     checkoutBtn.onclick = function() {
@@ -121,7 +122,7 @@ if (checkoutBtn) {
         const finalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
         message += `\nИТОГО К ОПЛАТЕ: ${finalPrice.toLocaleString()} ₸`;
 
-        const whatsappUrl = `https://wa.me/${+77055755098}?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(message)}`;
         modal.style.display = "flex";
         setTimeout(() => { window.open(whatsappUrl, '_blank'); }, 2000);
     }
