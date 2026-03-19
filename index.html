@@ -46,6 +46,18 @@
         </aside>
     </div>
 
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i data-lucide="check-circle" class="check-icon"></i>
+            <h2>Заказ оформлен!</h2>
+            <p>Сейчас вы будете перенаправлены в WhatsApp для завершения покупки.</p>
+            <p class="modal-text-muted">Проект создан <a href="https://galymzhan-samurai.netlify.app" target="_blank" style="color: var(--neon-purple);">Галымжаном-Самураем</a></p>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
     <footer>
         <p>© 2026 NeonStore. Создано для портфолио.</p>
     </footer>
@@ -54,23 +66,5 @@
     <script>
         lucide.createIcons();
     </script>
-    <div id="checkout-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <i data-lucide="check-circle" class="check-icon"></i>
-            <h2>Ваш заказ #1337 оформлен!</h2>
-            <p>Спасибо, что выбрали NeonStore. Мы выслали ключ активации на ваш email.</p>
-            <p class="modal-text-muted">Проект создан <a href="https://galymzhan-samurai.netlify.app" target="_blank" style="color: var(--neon-purple);">Галымжаном-Самураем</a> для портфолио.</p>
-        </div>
-    </div>
-
-    <div id="toast-container" class="toast-container"></div>
-
-    <script src="script.js"></script>
-    <script>
-        lucide.createIcons(); // Рисуем иконки
-    </script>
-</body>
-</html>
 </body>
 </html>
