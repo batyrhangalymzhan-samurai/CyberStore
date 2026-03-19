@@ -1,1 +1,72 @@
-ыы
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NeonStore | Геймерский магазин</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <i data-lucide="gamepad-2" style="color: var(--neon-purple);"></i>
+            <span>NeonStore</span>
+        </div>
+        <a href="#cart-anchor" class="header-cart-info" style="text-decoration: none;">
+            <i data-lucide="shopping-cart"></i>
+            <span id="header-qty">0</span>
+        </a>
+    </header>
+
+    <div class="container">
+        <main class="products-section">
+            <h1 class="section-title">Популярные игры</h1>
+            <div id="products-grid" class="products-grid"></div>
+        </main>
+
+        <aside id="cart-anchor" class="cart-sidebar">
+            <h2>Твоя корзина</h2>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart">Корзина пуста 🥺</p>
+            </div>
+            
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Товаров:</span>
+                    <span id="total-qty">0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Итого:</span>
+                    <span id="total-price">0 ₸</span>
+                </div>
+                <button class="checkout-btn">Оформить заказ</button>
+            </div>
+        </aside>
+    </div>
+
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i data-lucide="check-circle" class="check-icon" style="color: var(--neon-green); width: 50px; height: 50px; margin-bottom: 15px;"></i>
+            <h2>Заказ оформлен!</h2>
+            <p>Сейчас вы будете перенаправлены в WhatsApp для завершения покупки.</p>
+            <p class="modal-text-muted" style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+                Проект создан <a href="#" style="color: var(--neon-purple); text-decoration: none;">Галымжаном-Самураем</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <footer>
+        <p>© 2026 NeonStore. Создано для портфолио.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
